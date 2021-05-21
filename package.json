@@ -1,0 +1,18 @@
+{
+  "name": "node_backend",
+  "version": "0.0.1",
+  "description": "Teszt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Kaposvári Dániel",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "engines": {
+    "node": "14.17.0"
+  }
+}

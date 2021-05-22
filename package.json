@@ -11,8 +11,10 @@
   "author": "Kaposvári Dániel",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mongodb": "^3.6.8"
+    "mongodb": "^3.6.8",
+    "mongoose": "^5.12.10"
   },
   "engines": {
     "node": "14.17.0"

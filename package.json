@@ -4,13 +4,15 @@
   "description": "Teszt",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Kaposvári Dániel",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.6.8"
   },
   "engines": {
     "node": "14.17.0"

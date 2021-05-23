@@ -11,21 +11,15 @@ const mongodbUri = process.env.MONGODB_URI;
 const port = parseInt(process.env.PORT, 10);
 
 mongoose.connect(mongodbUri, {useNewUrlParser: true, useUnifiedTopology: true})
-    .then(
-        () => {
-            console.log('Successfully connected!')
-        })
-    .catch(
-        err => {
-            console.log('Connection failed: ', err)
-        })
+    .then(() => {console.log('Successfully connected!')})
+    .catch(err => {console.log('Connection failed: ', err)})
 
 mongoose.connection.on('error', err => {
     console.log('Error occurred in DB: ', err)
 });
 
-require('./models/example.model');
 require('./models/user.model');
+require('./models/product.model');
 const userModel = mongoose.model('user');
 
 const app = express();
@@ -82,17 +76,18 @@ app.get('/', ((req, res) => {
 }));
 
 app.use('/', require('./routes/user.routes'));
-app.use('/', require('./routes/example.routes'));
+app.use('/', require('./routes/product.routes'));
 
 app.use((req, res) => {
-    console.log("Invalid request URL!")
+    console.log("Invalid request URL!");
     res.status(404).send(
         {
             statusCode: 404,
             requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
             message: 'The requested resource not found.'
-        })
-});
+        });
+    }
+);
 
 app.use((err, req, res) => {
     console.error(err.stack)
@@ -100,8 +95,8 @@ app.use((err, req, res) => {
         statusCode: 500,
         requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
         message: 'Internal Server Error. Something broke during your request.'
-    })
-})
+    });
+});
 
 app.listen(port, () => {
     console.log('The server is running!')

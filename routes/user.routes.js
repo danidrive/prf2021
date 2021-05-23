@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const userModel = mongoose.model('user');
 
 router.route('/login').post(
-    passport.authenticate('local',{ session: false }),
+    passport.authenticate('local', { session: false }),
     (req, res) => {
         res.send({token: req.user});
     }
@@ -54,26 +54,15 @@ router.route('/register').post(
         } catch (e) {
             if (e instanceof mongoose.Error.ValidationError) {
                 const validationErrors = [];
+                const properties = ['username', 'email', 'password']
 
-                if (e.errors.username){
-                    validationErrors.push({
-                        field: e.errors.username.path,
-                        message: e.errors.username.message
-                    });
-                }
-
-                if (e.errors.email){
-                    validationErrors.push({
-                        field: e.errors.email.path,
-                        message: e.errors.email.message
-                    });
-                }
-
-                if (e.errors.password){
-                    validationErrors.push({
-                        field: e.errors.password.path,
-                        message: e.errors.password.message
-                    });
+                for (const property of properties) {
+                    if (e.errors[property]){
+                        validationErrors.push({
+                            field: e.errors[property].path,
+                            message: e.errors[property].message
+                        });
+                    }
                 }
 
                 return res.status(400).send({
@@ -88,14 +77,14 @@ router.route('/register').post(
     }
 );
 
-router.route('/user').get(
+router.route('/users').get(
     passport.authenticate('bearer',{ session: false }),
     async (req, res, next) => {
         if (req.user.accessLevel !== 'Admin'){
             return res.status(403).send({
                 statusCode: 403,
                 status: 'Forbidden',
-                message: 'You are not authorized to get the requested resource.'
+                message: 'You are not allowed to perform this operation.'
             });
         }
 
@@ -108,7 +97,7 @@ router.route('/user').get(
     }
 );
 
-router.route('/user/me').get(
+router.route('/users/me').get(
     passport.authenticate('bearer',{ session: false }),
     (req, res) => {
         res.status(200).send({

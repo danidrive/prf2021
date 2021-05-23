@@ -42,7 +42,7 @@ let userSchema = new mongoose.Schema(
         }
     },
     {
-        collection: 'user',
+        collection: 'users',
         timestamps: true
     }
 );

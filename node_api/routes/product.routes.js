@@ -9,7 +9,7 @@ router.route('/products').get(
     passport.authenticate('bearer', { session: false }),
     async (req, res, next) => {
         try {
-            const products = await productModel.find({})
+            const products = await productModel.find({}, '-__v')
             res.status(200).json(products);
         } catch (e) {
             next(e);

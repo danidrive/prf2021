@@ -6,6 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 
 const mongodbUri = process.env.MONGODB_URI;
 const port = parseInt(process.env.PORT, 10);
@@ -18,8 +19,8 @@ mongoose.connection.on('error', err => {
     console.log('Error occurred in DB: ', err)
 });
 
-require('./models/user.model');
-require('./models/product.model');
+require('./node_api/models/user.model');
+require('./node_api/models/product.model');
 const userModel = mongoose.model('user');
 
 const app = express();
@@ -70,14 +71,14 @@ passport.use('bearer', new BearerStrategy({}, async (token, done) => {
     }
 }));
 
-app.get('/', ((req, res) => {
-    console.log('hello')
-    res.send("Hello world!")
-}));
+app.use(express.static(path.join(__dirname, 'public')))
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs')
+    .get('/', ((req, res) => res.render('pages/index')));
 
-app.use('/', require('./routes/user.routes'));
-app.use('/', require('./routes/product.routes'));
-app.use('/', require('./routes/cart.routes'));
+app.use('/api/', require('./node_api/routes/user.routes'));
+app.use('/api/', require('./node_api/routes/product.routes'));
+app.use('/api/', require('./node_api/routes/cart.routes'));
 
 app.use((req, res) => {
     console.log("Invalid request URL!");

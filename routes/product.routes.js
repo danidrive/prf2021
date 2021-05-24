@@ -20,7 +20,6 @@ router.route('/products').get(
 router.route('/products').post(
     passport.authenticate('bearer', { session: false }),
     async (req, res, next) => {
-
         if (req.user.accessLevel !== 'Admin'){
             return res.status(403).send({
                 statusCode: 403,
@@ -69,7 +68,6 @@ router.route('/products').post(
 router.route('/products/:id').put(
     passport.authenticate('bearer', { session: false }),
     async (req, res, next) => {
-
         if (req.user.accessLevel !== 'Admin'){
             return res.status(403).send({
                 statusCode: 403,
@@ -79,7 +77,6 @@ router.route('/products/:id').put(
         }
 
         try {
-
             const product = await productModel.findOne({_id: req.params.id});
 
             if (!product){
@@ -128,7 +125,6 @@ router.route('/products/:id').put(
 router.route('/products/:id').delete(
     passport.authenticate('bearer', { session: false }),
     async (req, res, next) => {
-
         if (req.user.accessLevel !== 'Admin'){
             return res.status(403).send({
                 statusCode: 403,
@@ -138,10 +134,8 @@ router.route('/products/:id').delete(
         }
 
         try {
-
             await productModel.deleteOne({_id: req.params.id});
-            res.status(200).send();
-
+            res.status(204).send();
         } catch (e) {
             next(e);
         }

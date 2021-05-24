@@ -99,14 +99,15 @@ router.route('/users').get(
 
 router.route('/users/me').get(
     passport.authenticate('bearer',{ session: false }),
-    (req, res) => {
-        res.status(200).send({
-            username: req.user.username,
-            email: req.user.email,
-            accessLevel: req.user.accessLevel,
-            registrationDate: req.user.createdAt,
-            lastModified: req.user.updatedAt
-        });
+    async (req, res) => {
+        try {
+            const user = await userModel.findOne(
+                { username: req.user.username },
+                '-_id username email accessLevel createdAt updatedAt');
+            res.status(200).json(user);
+        } catch (e){
+            next(e);
+        }
     }
 );
 

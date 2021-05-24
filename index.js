@@ -31,7 +31,7 @@ const jwtSecret = process.env.JWT_SECRET;
 passport.use('local', new LocalStrategy({}, async (username, password, done) => {
 
     try {
-        const user = await userModel.findOne({username: username});
+        const user = await userModel.findOne({username: username}, '-_id username password');
         if (!user){
             return done(null, false);
         }
@@ -56,7 +56,7 @@ passport.use('local', new LocalStrategy({}, async (username, password, done) => 
 passport.use('bearer', new BearerStrategy({}, async (token, done) => {
     try {
         const payload = jwt.decode(token, jwtSecret);
-        const user = await userModel.findOne({username: payload.username});
+        const user = await userModel.findOne({username: payload.username}, '-_id username accessLevel');
 
         if (!user){
             return done(null, false);
@@ -77,10 +77,11 @@ app.get('/', ((req, res) => {
 
 app.use('/', require('./routes/user.routes'));
 app.use('/', require('./routes/product.routes'));
+app.use('/', require('./routes/cart.routes'));
 
 app.use((req, res) => {
     console.log("Invalid request URL!");
-    res.status(404).send(
+    return res.status(404).send(
         {
             statusCode: 404,
             requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
@@ -91,7 +92,7 @@ app.use((req, res) => {
 
 app.use((err, req, res) => {
     console.error(err.stack)
-    res.status(500).send({
+    return res.status(500).send({
         statusCode: 500,
         requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
         message: 'Internal Server Error. Something broke during your request.'

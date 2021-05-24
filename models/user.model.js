@@ -39,7 +39,11 @@ let userSchema = new mongoose.Schema(
                 values: ['Customer', 'Admin'],
                 message: '{VALUE} is not a valid access level'
             }
-        }
+        },
+        cart: [new mongoose.Schema({
+            product: mongoose.ObjectId,
+            amount: Number
+        })]
     },
     {
         collection: 'users',

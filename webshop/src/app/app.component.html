@@ -1,12 +1,17 @@
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="48"
-    alt="Web Shop Logo"
-    src="assets/shopping_cart_white_48dp.svg"
-  />
-  <span>Welcome to my very own and creative Web Shop</span>
-    <div class="spacer"></div>
-</div>
+<mat-toolbar color="primary" class="app-header">
+  <div>My very own Web Shop</div>
+  <span class="nav-tool-items">
+    <a mat-button routerLink="login" routerLinkActive="active">Login</a>
+    <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Signup</a>
+  </span>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+      <p>
+        © Copyright 2021. All rights reserved.
+      </p>
+  </div>
+</footer>

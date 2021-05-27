@@ -1,0 +1,11 @@
+<div class="stepper-input stepper__input">
+  <button class="toggle-less" (click)="toggleLess()">
+    <img src="assets/minus.svg" alt="Less"/>
+  </button>
+  <div class="stepper-input-field" name="range-value" aria-atomic="true" aria-live="polite" aria-relevant="all">
+    {{renderedValue}}
+  </div>
+  <button class="toggle-more" (click)="toggleMore()">
+    <img src="assets/plus.svg" alt="More" />
+  </button>
+</div>

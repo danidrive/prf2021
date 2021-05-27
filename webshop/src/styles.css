@@ -1,14 +1,13 @@
 html,
 body {
+  position: relative;
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
   min-height: 100vh;
   background-color: #e5e5e5;
   font-family: 'Roboto', sans-serif;
+  overflow: auto;
 }
 
 .app-header {
@@ -19,6 +18,14 @@ body {
   right: 0;
   z-index: 2;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
 }
 
 .main-wrapper {
@@ -105,13 +112,4 @@ body {
 
 .main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  text-align: center;
-  line-height: 60px;
 }

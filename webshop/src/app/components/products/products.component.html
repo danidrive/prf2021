@@ -1,0 +1,31 @@
+<div class="content">
+  <mat-card id="product">
+
+    <mat-card-header>
+      <mat-card-title>Product Name</mat-card-title>
+      <mat-card-subtitle>Manufacturer</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <span>
+        <mat-label id="description">
+          <p>
+            <img src="assets/shopping_cart.svg" alt="Product icon">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </mat-label>
+      </span>
+
+      <div class="grid-container">
+        <mat-label class="first-column">Price :99$</mat-label>
+        <mat-label class="first-column">Total price: 99$</mat-label>
+        <app-stepper-input [step]="1" [min]="1" [max]="100" [initialValue]="1" id="stepper"></app-stepper-input>
+        <button mat-stroked-button color="accent" class="grid-item2">Add to cart</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+

@@ -26,7 +26,7 @@ export class NodeBackendService {
     });
   }
 
-  getProducts(){
+  listProducts(){
     return this.httpClient.get<Product[]>(environment.nodeApiUri + '/products');
   }
 
@@ -34,6 +34,24 @@ export class NodeBackendService {
     return this.httpClient.post(environment.nodeApiUri + '/cart', {
       product : productId,
       amount: amount
-    })
+    });
+  }
+
+  listCart(){
+    return this.httpClient.get<Product []>(environment.nodeApiUri + '/cart');
+  }
+
+  modifyCart(id: string, amount: number){
+    return this.httpClient.put(environment.nodeApiUri + `/cart/${id}`, {
+      amount: amount
+    });
+  }
+
+  removeFromCart(id: string){
+    return this.httpClient.delete(environment.nodeApiUri + `/cart/${id}`);
+  }
+
+  emptyCart(){
+    return this.httpClient.delete(environment.nodeApiUri + `/cart`);
   }
 }

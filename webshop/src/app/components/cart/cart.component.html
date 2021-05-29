@@ -1,0 +1,30 @@
+<div class="content">
+  <mat-card id="product" *ngFor="let product of products">
+
+    <mat-card-header>
+      <mat-card-title>{{product.name}}</mat-card-title>
+      <mat-card-subtitle>{{product.manufacturer}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <span>
+        <mat-label id="description">
+          <p>
+            <img src="assets/shopping_cart.svg" alt="Product icon">
+            {{product.description}}
+          </p>
+        </mat-label>
+      </span>
+
+      <div class="grid-container">
+        <mat-label class="first-column">Price: {{product.price}} $</mat-label>
+
+        <mat-label class="first-column">Total: {{product.amount * product.price | number : '1.2-2'}} $</mat-label>
+        <app-stepper-input [step]="1" [min]="0" [max]="product.stock" [(value)]="product.amount" id="stepper"></app-stepper-input>
+        <button mat-stroked-button color="accent" class="grid-item2" (click)="modifyCart(product)" *ngIf="product.amount !== 0">Modify</button>
+        <button mat-stroked-button color="accent" class="grid-item2" (click)="removeFromCart(product)" *ngIf="product.amount === 0">Remove</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

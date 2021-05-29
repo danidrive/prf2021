@@ -1,0 +1,68 @@
+.content {
+  position: relative;
+  padding-top: 80px;
+  width: 600px;
+  margin: auto;
+}
+
+@media (max-width: 600px) {
+  .content {
+    width: 95%;
+  }
+}
+
+#product {
+  top: 0;
+  margin-bottom: 24px;
+  opacity: 1;
+  float: left;
+  padding: 20px 20px 20px 20px;
+  width: 100%;
+  border-radius: 10px;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
+}
+
+#description {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+img {
+  float: left;
+  width: 80px;
+  height: 80px;
+}
+
+.mat-stroked-button {
+  border: 1px solid currentColor;
+  line-height: 36px;
+  background: #FFF7FA;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 20% 50% 30%;
+  padding: 10px;
+}
+
+.first-column {
+  grid-column-start: 1;
+}
+
+app-stepper-input {
+  margin: auto;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.grid-container button {
+  grid-column-start: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  width: 75%;
+  margin: auto;
+}

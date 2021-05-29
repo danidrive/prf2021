@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StepperInputComponent } from './components/stepper-input/stepper-input.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./utils/AuthInterceptor";
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {AuthInterceptor} from "./utils/AuthInterceptor";
     ProductsComponent,
     LoginComponent,
     RegisterComponent,
-    StepperInputComponent
+    StepperInputComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

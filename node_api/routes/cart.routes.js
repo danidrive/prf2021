@@ -15,7 +15,16 @@ router.route('/cart').get(
 
             const cart = []
             for (const cartElement of user.cart) {
-                cart.push({product: cartElement.product, amount: cartElement.amount})
+                cartElement.product.amount = cartElement.amount;
+                cart.push({
+                    _id: cartElement.product._id,
+                    name: cartElement.product.name,
+                    description: cartElement.product.description,
+                    manufacturer: cartElement.product.manufacturer,
+                    stock: cartElement.product.stock,
+                    price: cartElement.product.price,
+                    amount: cartElement.product.amount,
+                });
             }
 
             return res.status(200).json(cart);

@@ -4,7 +4,7 @@
     <a *ngIf="isLoggedOut()" mat-button routerLink="login" routerLinkActive="active">Log In</a>
     <a *ngIf="isLoggedOut()" mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
     <a *ngIf="isLoggedIn()" mat-button routerLink="products" routerLinkActive="active">Store</a>
-    <a *ngIf="isLoggedIn()" mat-button routerLink="products" routerLinkActive="active">Cart</a>
+    <a *ngIf="isLoggedIn()" mat-button routerLink="cart" routerLinkActive="active">Cart</a>
     <a *ngIf="isLoggedIn()" mat-button mat-raised-button routerLink="login" routerLinkActive="active" (click)="logOut()">Log Out</a>
   </span>
 </mat-toolbar>

@@ -15,11 +15,10 @@ export class ProductsComponent implements OnInit {
   constructor(private nodeBackend: NodeBackendService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.nodeBackend.getProducts().subscribe(
+    this.nodeBackend.listProducts().subscribe(
       response => {
         response.forEach(product => product.amount = 0);
         this.products = response;
-        console.log(this.products);
       },
         error => {
         console.log(error.error);
@@ -34,8 +33,6 @@ export class ProductsComponent implements OnInit {
       return;
     }
 
-    console.log(product);
-
     this.nodeBackend.addToCart(product._id, product.amount).subscribe(
       next => {
         this.snackBar.open('Successfully added to your cart.', 'OK');
@@ -45,7 +42,7 @@ export class ProductsComponent implements OnInit {
           this.snackBar.open(error.error.message, 'OK');
         } else {
           console.log(error);
-          this.snackBar.open('Unkown error.', 'OK');
+          this.snackBar.open('Unknown error.', 'OK');
         }
       }
     )

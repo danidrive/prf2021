@@ -30,4 +30,10 @@ export class NodeBackendService {
     return this.httpClient.get<Product[]>(environment.nodeApiUri + '/products');
   }
 
+  addToCart(productId: string, amount: number){
+    return this.httpClient.post(environment.nodeApiUri + '/cart', {
+      product : productId,
+      amount: amount
+    })
+  }
 }

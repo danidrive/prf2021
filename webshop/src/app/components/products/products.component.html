@@ -21,7 +21,7 @@
 
         <mat-label class="first-column">Total: {{product.amount * product.price | number : '1.2-2'}} $</mat-label>
         <app-stepper-input [step]="1" [min]="0" [max]="product.stock" [(value)]="product.amount" id="stepper"></app-stepper-input>
-        <button mat-stroked-button color="accent" class="grid-item2">Add to cart</button>
+        <button mat-stroked-button color="accent" class="grid-item2" (click)="addToCart(product)">Add to cart</button>
       </div>
 
     </mat-card-content>

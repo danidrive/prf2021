@@ -1,6 +1,6 @@
 export class Product {
 
-  id: string;
+  _id: string;
   name: string;
   description: string;
   manufacturer: string;
@@ -9,7 +9,7 @@ export class Product {
   amount: number;
 
   constructor() {
-    this.id = '';
+    this._id = '';
     this.name = '';
     this.description = '';
     this.manufacturer = '';

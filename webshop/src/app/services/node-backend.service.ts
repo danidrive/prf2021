@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import {LoginResponse} from "../models/LoginResponse";
+import {Product} from "../models/Product";
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,9 @@ export class NodeBackendService {
       password: password
     });
   }
+
+  getProducts(){
+    return this.httpClient.get<Product[]>(environment.nodeApiUri + '/products');
+  }
+
 }

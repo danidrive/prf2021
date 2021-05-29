@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-stepper-input',
@@ -6,16 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./stepper-input.component.css']
 })
 export class StepperInputComponent {
-  title = "Stepper input";
-  @Input() initialValue: number = 1;
   @Input() step: number = 1;
   @Input() min: number = 1;
   @Input() max: number = 100;
-  renderedValue: string | undefined;
-  value: number = 1;
+  @Input() value: number = 1;
+  @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
+  renderedValue: string = '';
 
   ngOnInit() {
-    this.value = this.initialValue
+    this.valueChange.emit(this.value);
     this.renderedValue = this.value.toString();
   }
 
@@ -23,6 +22,7 @@ export class StepperInputComponent {
     if (this.step + this.value <= this.max) {
       this.value = this.value + this.step;
       this.renderedValue = this.value.toString();
+      this.valueChange.emit(this.value);
     }
   };
 
@@ -30,6 +30,7 @@ export class StepperInputComponent {
     if (this.value - this.step >= this.min) {
       this.value = this.value - this.step;
       this.renderedValue = this.value.toString();
+      this.valueChange.emit(this.value);
     }
   };
 }

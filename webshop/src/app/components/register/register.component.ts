@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NodeBackendService } from "../../services/node-backend.service";
-import {FormControl, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {ErrorStateMatcher} from "@angular/material/core";
+import {FormControl, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import {MyErrorStateMatcher} from "../../utils/Matcher";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -40,7 +34,9 @@ export class RegisterComponent implements OnInit {
 
   matcher = new MyErrorStateMatcher();
 
-  constructor(private nodeBackend: NodeBackendService, private snackBar: MatSnackBar) { }
+  constructor(private nodeBackend: NodeBackendService,
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit() { }
 
@@ -50,6 +46,7 @@ export class RegisterComponent implements OnInit {
     {
       this.nodeBackend.register(this.usernameFormControl.value, this.emailFormControl.value, this.passwordFormControl.value).subscribe(next => {
         this.snackBar.open('Successful registration! Now please log in.', 'OK');
+        this.router.navigateByUrl('/login');
       },
       error => {
         if (error.error.message){

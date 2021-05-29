@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  nodeApiUri: '',
+  nodeApiUri: 'https://prf2021.herokuapp.com/api'
 };

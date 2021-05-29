@@ -88,6 +88,10 @@ footer {
   width: 100%;
 }
 
+.example-full-width {
+  padding: 6px 0;
+}
+
 .main-wrapper mat-card-header {
   text-align: center;
   width: 100%;

@@ -7,6 +7,7 @@ const BearerStrategy = require('passport-http-bearer').Strategy;
 const jwt = require('jwt-simple');
 const bcrypt = require('bcryptjs');
 const path = require('path');
+const cors = require('cors');
 
 const mongodbUri = process.env.MONGODB_URI;
 const port = parseInt(process.env.PORT, 10);
@@ -26,6 +27,13 @@ const userModel = mongoose.model('user');
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({}));
+
+app.use(cors({
+    origin: 'http://localhost:4200',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 
 const jwtSecret = process.env.JWT_SECRET;
 

@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({}));
 
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: ['http://localhost:4200', 'https://prf2021.herokuapp.com'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
@@ -87,26 +87,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/', require('./node_api/routes/user.routes'));
 app.use('/api/', require('./node_api/routes/product.routes'));
 app.use('/api/', require('./node_api/routes/cart.routes'));
-
-app.use((req, res) => {
-    console.log("Invalid request URL!");
-    return res.status(404).send(
-        {
-            statusCode: 404,
-            requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
-            message: 'The requested resource not found.'
-        });
-    }
-);
-
-app.use((err, req, res) => {
-    console.error(err.stack)
-    return res.status(500).send({
-        statusCode: 500,
-        requestUri: req.protocol + '://' + req.get('host') + req.originalUrl,
-        message: 'Internal Server Error. Something broke during your request.'
-    });
-});
+app.use((req, res) => { return res.sendFile(path.join(__dirname,'public/index.html')); });
 
 app.listen(port, () => {
     console.log('The server is running!')

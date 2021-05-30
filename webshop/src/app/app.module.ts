@@ -14,6 +14,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./utils/AuthInterceptor";
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { OrderComponent } from './components/order/order.component';
     RegisterComponent,
     StepperInputComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

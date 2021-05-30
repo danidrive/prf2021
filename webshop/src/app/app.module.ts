@@ -13,6 +13,7 @@ import { StepperInputComponent } from './components/stepper-input/stepper-input.
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./utils/AuthInterceptor";
 import { CartComponent } from './components/cart/cart.component';
+import { OrderComponent } from './components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CartComponent } from './components/cart/cart.component';
     LoginComponent,
     RegisterComponent,
     StepperInputComponent,
-    CartComponent
+    CartComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

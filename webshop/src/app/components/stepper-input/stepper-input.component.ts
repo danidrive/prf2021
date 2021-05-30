@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
-  selector: 'app-stepper-input',
+  selector: 'stepper-input',
   templateUrl: './stepper-input.component.html',
   styleUrls: ['./stepper-input.component.css']
 })

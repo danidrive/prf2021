@@ -18,6 +18,10 @@ export class CartComponent implements OnInit {
     this.nodeBackend.listCart().subscribe(
       response => {
         this.products = response;
+
+        if (this.products.length === 0){
+          this.snackBar.open('Your cart is empty. Please visit the store first.', 'OK');
+        }
       },
       error => {
         console.log(error.error);

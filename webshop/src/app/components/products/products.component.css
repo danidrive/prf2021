@@ -52,7 +52,7 @@ img {
   grid-column-start: 1;
 }
 
-app-stepper-input {
+stepper-input {
   margin: auto;
   grid-column-start: 2;
   grid-row-start: 1;

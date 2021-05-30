@@ -1,0 +1,22 @@
+<div class="content">
+  <mat-card id="card">
+
+    <mat-card-header>
+      <mat-card-title>Your order</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="grid-container" *ngFor="let product of products">
+        <mat-label>{{product.name}}</mat-label>
+        <mat-label class="right-align">{{product.amount}} x {{product.price}} $</mat-label>
+        <mat-label class="right-align">{{product.amount * product.price | number : '1.2-2'}} $</mat-label>
+      </div>
+      <div class="grid-container2">
+        <mat-label class="right-align">Total: {{sum}} $</mat-label>
+        <button mat-stroked-button color="accent" (click)="order()" *ngIf="products.length !== 0">Order</button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>

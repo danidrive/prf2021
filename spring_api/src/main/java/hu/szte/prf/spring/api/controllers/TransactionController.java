@@ -28,11 +28,11 @@ public class TransactionController {
 
     @GetMapping("/transactions/{username}")
     public List<TransactionResponse> listTransactionsByUser(@PathVariable(name = "username") String username) {
-        var transactions = this.transactionService.listTransactionsByUser(username);
-        var transactionDictionary = new HashMap<UUID, TransactionResponse>();
+        List<Transaction> transactions = this.transactionService.listTransactionsByUser(username);
+        HashMap<UUID, TransactionResponse> transactionDictionary = new HashMap<UUID, TransactionResponse>();
         for (Transaction transaction : transactions) {
-            var product = this.productService.getProductById(transaction.getProduct_id());
-            var productResponse = new ProductsToBuy(product.getId(), product.getName(), product.getPrice(), transaction.getAmount());
+            Product product = this.productService.getProductById(transaction.getProduct_id());
+            ProductsToBuy productsToBuy = new ProductsToBuy(product.getId(), product.getName(), product.getPrice(), transaction.getAmount());
 
             if (!transactionDictionary.containsKey(transaction.getId())) {
                 transactionDictionary.put(
@@ -42,16 +42,16 @@ public class TransactionController {
                                 transaction.getTimestamp(),
                                 new ArrayList<>()));
             }
-            transactionDictionary.get(transaction.getId()).getProducts().add(productResponse);
+            transactionDictionary.get(transaction.getId()).getProducts().add(productsToBuy);
         }
-        return transactionDictionary.values().stream().toList();
+        return new ArrayList<>(transactionDictionary.values());
     }
 
     @PostMapping("/transactions")
     public void addTransaction(@RequestBody TransactionRequest request){
         UUID transactionId = UUID.randomUUID();
         for (ProductsToBuy product : request.getProducts()) {
-            var p = this.productService.getProductById(product.getId());
+            Product p = this.productService.getProductById(product.getId());
             if (p == null) {
                 this.productService.addProduct(new Product(product.getId(), product.getName(), product.getPrice()));
             }

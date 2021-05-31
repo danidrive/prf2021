@@ -10,9 +10,12 @@
 	</parent>
 	<groupId>hu.szte.prf</groupId>
 	<artifactId>spring.api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>spring.api</name>
 	<description>PRF spring API for my very own web shop</description>
+<!--	<properties>-->
+<!--		<java.version>16</java.version>-->
+<!--	</properties>-->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

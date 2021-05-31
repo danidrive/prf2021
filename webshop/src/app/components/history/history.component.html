@@ -1,0 +1,17 @@
+<div class="content">
+  <mat-card id="transcation" *ngFor="let transaction of transactions">
+
+    <mat-card-header>
+      <mat-card-title>{{transaction.id}}</mat-card-title>
+      <mat-card-subtitle>{{transaction.timestamp | date:'medium'}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="grid-container" *ngFor="let product of transaction.products">
+        <mat-label>{{product.name}}</mat-label>
+        <mat-label class="right-align">{{product.amount}} x {{product.price}} $</mat-label>
+        <mat-label class="right-align">{{product.amount * product.price | number : '1.2-2'}} $</mat-label>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

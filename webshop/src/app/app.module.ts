@@ -15,6 +15,7 @@ import {AuthInterceptor} from "./utils/AuthInterceptor";
 import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { HistoryComponent } from './components/history/history.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     StepperInputComponent,
     CartComponent,
     OrderComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

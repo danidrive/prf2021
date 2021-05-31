@@ -5,12 +5,12 @@ export class Transaction {
 }
 
 export class ProductsToBuy {
-  id: string | undefined;
-  name: string | undefined;
-  price: number | undefined;
-  amount: number | undefined;
+  id: string = '';
+  name: string ='';
+  price: number = 0.0;
+  amount: number = 0;
 
-  constructor(id: string | undefined, name: string | undefined, price: number | undefined, amount: number | undefined) {
+  constructor(id: string, name: string, price: number, amount: number) {
     this.id = id;
     this.name = name;
     this.price = price;

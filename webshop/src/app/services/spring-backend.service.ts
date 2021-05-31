@@ -16,6 +16,6 @@ export class SpringBackendService {
   }
 
   listTransactions(username: string){
-    return this.httpClient.get<Transaction>(environment.springApiUri + '/transactions/' + username);
+    return this.httpClient.get<Transaction[]>(environment.springApiUri + '/transactions/' + username);
   }
 }

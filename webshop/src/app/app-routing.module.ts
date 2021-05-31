@@ -7,6 +7,7 @@ import {CartComponent} from "./components/cart/cart.component";
 import {OrderComponent} from "./components/order/order.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {HistoryComponent} from "./components/history/history.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'products', component: ProductsComponent, canActivate: [AuthGuard]},
   {path: 'cart', component:CartComponent, canActivate: [AuthGuard]},
   {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
+  {path: 'history', component: HistoryComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent}
 ];
 

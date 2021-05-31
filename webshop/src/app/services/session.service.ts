@@ -7,12 +7,14 @@ export class SessionService {
 
   constructor() { }
 
-  create(jwt: string) {
+  create(jwt: string, username: string) {
     localStorage.setItem('jwt', jwt);
+    localStorage.setItem('username', username);
   }
 
   destroy() {
     localStorage.removeItem("jwt");
+    localStorage.removeItem('username');
   }
 
   public isLoggedIn() {

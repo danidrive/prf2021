@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     {
       this.nodeBackend.login(this.usernameFormControl.value, this.passwordFormControl.value).subscribe(
         response => {
-          this.session.create(response.token);
+          this.session.create(response.token, this.usernameFormControl.value);
           this.router.navigateByUrl('/products');
         },
         error => {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Product} from "../../models/Product";
 import {NodeBackendService} from "../../services/node-backend.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {SpringBackendService} from "../../services/spring-backend.service";
+import {ProductsToBuy} from "../../models/Transaction";
 
 @Component({
   selector: 'app-order',
@@ -13,7 +15,9 @@ export class OrderComponent implements OnInit {
   products: Product[] = [];
   sum: number = 0;
 
-  constructor(private nodeBackend: NodeBackendService, private snackBar: MatSnackBar) { }
+  constructor(private nodeBackend: NodeBackendService,
+              private springBackend: SpringBackendService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.nodeBackend.listCart().subscribe(
@@ -39,20 +43,38 @@ export class OrderComponent implements OnInit {
       return;
     }
 
-    this.nodeBackend.emptyCart().subscribe(
-      next => {
-        this.snackBar.open("Congratulations, you've just ordered a bunch of useless stuff! Thanks for your money!", 'OK');
-        this.products = [];
-        this.sum = 0;
-      },
-      error => {
-        if (error.error.message){
-          this.snackBar.open(error.error.message, 'OK');
-        } else {
-          console.log(error);
-          this.snackBar.open('Unknown error.', 'OK');
+    const productsToBuy = [];
+
+    for (const product of this.products) {
+      productsToBuy.push(new ProductsToBuy(
+        product._id,
+        product.name,
+        product.price,
+        product.amount))
+    }
+
+    this.springBackend.addTransaction({
+      username: localStorage.getItem('username'),
+      products: productsToBuy
+    }).subscribe(next => {
+      this.nodeBackend.emptyCart().subscribe(
+        next => {
+          this.snackBar.open("Congratulations, you've just ordered a bunch of useless stuff! Thanks for your money!", 'OK');
+          this.products = [];
+          this.sum = 0;
+        },
+        error => {
+          if (error.error.message){
+            this.snackBar.open(error.error.message, 'OK');
+          } else {
+            console.log(error);
+            this.snackBar.open('Unknown error.', 'OK');
+          }
         }
-      }
-    )
+      );
+    }, error => {
+      console.log(error);
+      this.snackBar.open('Unknown error.', 'OK');
+    });
   }
 }

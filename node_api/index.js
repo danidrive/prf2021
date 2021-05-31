@@ -20,8 +20,8 @@ mongoose.connection.on('error', err => {
     console.log('Error occurred in DB: ', err)
 });
 
-require('./node_api/models/user.model');
-require('./node_api/models/product.model');
+require('./models/user.model');
+require('./models/product.model');
 const userModel = mongoose.model('user');
 
 const app = express();
@@ -84,9 +84,9 @@ app.use(express.static(path.join(__dirname, 'public')))
     .set('view engine', 'ejs')
     .get('/', ((req, res) => res.render('pages/index')));
 
-app.use('/api/', require('./node_api/routes/user.routes'));
-app.use('/api/', require('./node_api/routes/product.routes'));
-app.use('/api/', require('./node_api/routes/cart.routes'));
+app.use('/api/', require('./routes/user.routes'));
+app.use('/api/', require('./routes/product.routes'));
+app.use('/api/', require('./routes/cart.routes'));
 app.use((req, res) => { return res.sendFile(path.join(__dirname,'public/index.html')); });
 
 app.listen(port, () => {

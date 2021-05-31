@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   nodeApiUri: 'http://localhost:3000/api',
+  springApiUri: 'http://localhost:8080/'
 };
 
 /*
